@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { TodosService } from './todos.service';
 import { CreateDto } from './dto/create.dto';
+import UpdateDto from './dto/update.dto';
 
 @Controller('todos')
 export class TodosController {
@@ -30,8 +31,8 @@ export class TodosController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() { status }) {
-    return this.todosService.update(+id, status);
+  update(@Param('id') id: string, @Body() body: UpdateDto) {
+    return this.todosService.update(+id, body);
   }
 
   @Delete(':id')

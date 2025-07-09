@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateDto } from './dto/create.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import UpdateDto from './dto/update.dto';
 
 @Injectable()
 export class TodosService {
@@ -18,10 +19,10 @@ export class TodosService {
     return this.prisma.todo.findUnique({ where: { id } });
   }
 
-  update(id: number, status: boolean) {
+  update(id: number, body: UpdateDto) {
     return this.prisma.todo.update({
       where: { id },
-      data: { status: !status },
+      data: body,
     });
   }
 
